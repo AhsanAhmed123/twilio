@@ -71,8 +71,10 @@ class AuthController extends Controller
             'created_at' => now(),
         ]);
 
-        Mail::to($request->email)->send(new ForgotPasswordMail($otp));
-
+        // Mail::raw("Your OTP for password reset is: $otp", function ($message) use ($request) {
+        // $message->to($request->email)
+        //             ->subject('Password Reset OTP');
+        // });
         return response()->json([
             'status' => true,
             'message' => 'OTP sent to your registered email.',
